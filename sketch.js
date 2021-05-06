@@ -2,7 +2,6 @@ let dayString;
 let data = [];
 let dataHumidity;
 
-
 function preload() {
   for (let i = 1; i <= 30; i++) {
     //for (let i = 21; i <= 21; i++) {
@@ -80,24 +79,22 @@ function drawRaindrop(x, y, dayHumidity) {
   noStroke();
 
 
-
-  for (var j = 2; j < 30; j++) {
+  for (var i = 2; i < 30; i++) {
     let d = dist(x, y + i * 1.5, mouseX, mouseY);
-		if (d <= 20) {
-			fill('white');
-		// ellipse(x, y + i * 1.5, i, i);
-		// 		https://openprocessing.org/sketch/723484
+    if (d <= 20) {
+      fill('white');
+      // ellipse(x, y + i * 1.5, i, i);
+      // 		https://openprocessing.org/sketch/723484
+    }
+
+    // <-  
+
+    for (let m = 2; m < 30; m++) {
+      ellipse(x, y + m * 1.5, m, m);
+    }
+
+    // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
+    // 		Stroke('black');
+    // }
   }
-
-  // <-  
-
-  for (let m = 2; m < 30; m++) {
-    ellipse(x, y + m * 1.5, m, m);
-  }
-
-  // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
-  // 		Stroke('black');
-  // }
 }
-}
-
