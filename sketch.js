@@ -48,7 +48,7 @@ function draw() {
 
     // data.get(0)
     // data[0]
-
+    console.info(dataHumidity);
 
     // rainTable.get(m, "inches")*10
     // inches是他这里的降水量
