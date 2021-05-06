@@ -2,6 +2,8 @@ let dayString;
 let data = [];
 let dataHumidity;
 
+
+
 function preload() {
   for (let i = 1; i <= 30; i++) {
     //for (let i = 21; i <= 21; i++) {
@@ -30,6 +32,10 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(225);
+
+  //slider 
+  slider0 = new Slider(300, 0, 100, 20, 80);
+  slider0.position(500, 200);
 }
 
 function draw() {
