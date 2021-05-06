@@ -19,7 +19,7 @@ function preload() {
     console.info(obj.x)
     console.info(obj["x"])
 
-    // console.info( data.10 )
+    
     console.info(data[0])
     // console.log(hourData);
     // noLoop();
@@ -37,6 +37,7 @@ function draw() {
   for (let m = 0; m <= 29; m++) {
     for (let n = 0; n <= 71; n++) {
       let dataHumidity = data[m][n].humidity;
+      // console.info( data[m][n].humidity )
     }
   }
   for (let j = 0; j < 30; j++) {
@@ -56,23 +57,23 @@ function draw() {
   }
 }
 
-function drawRaindrop(x, y, dayHumidity) {
-  if (dayHumidity > 60) {
+function drawRaindrop(x, y, dataHumidity) {
+  if (dataHumidity > 60) {
     fill("#004CBB");
   }
-  else if (dayHumidity > 50) {
+  else if (dataHumidity > 50) {
     fill("#0C55C1");
   }
-  else if (dayHumidity > 40) {
+  else if (dataHumidity > 40) {
     fill("#2C67C9");
   }
-  else if (dayHumidity > 30) {
+  else if (dataHumidity > 30) {
     fill("#4C7DD3");
   }
-  else if (dayHumidity > 20) {
+  else if (dataHumidity > 20) {
     fill("#608CD8");
   }
-  else if (dayHumidity > 10) {
+  else if (dataHumidity > 10) {
 
     fill("#83A7E1");
   }
