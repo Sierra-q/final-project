@@ -98,18 +98,4 @@ function drawRaindrop(x, y, dayHumidity) {
   // 		Stroke('black');
   // }
 }
-
-// function ptInRaindrop(x, y, left, top, right, bottom) {
-// 	return isBetween(x, left, right) && isBetween(y, top, bottom);
-// }
-
-// function isBetween(x, start, stop) {
-// 	return (start < x && x < stop);
-// }
-
-
-//let dayHumidity = dayString[m].data[n].humidity;
-      //let dayHumidity = data[n].weather_state_name;
-      // console.info(`about to read data[${m}][${n}]`)
-      // console.info(data[0])
-      // console.log[data[0][]]
+}
