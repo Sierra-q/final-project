@@ -1,17 +1,33 @@
-//slider
+// initiation
 let slider0;
+let slider1;
 
 function setup() {
+    // regular setup
     createCanvas(windowWidth, windowHeight);
-    background(225);
+    background(100);
 
-    //slider 
+    // instantiate the slider
     slider0 = new Slider(300, 0, 100, 20, 80);
     slider0.position(500, 200);
+
+    slider1 = new Slider(300, 0, 30, 6, 24);
+    slider1.position(800, 300);
+}
+
+function draw() {
+    // refresh background
+    background(100);
+
+    // refreash slider0
+    slider0.update();
+    slider0.display();
+    slider1.update();
+    slider1.display();
 }
 
 class Slider {
-    constructor(width, min, max, end1 = min, end2 = max, step = 5) {
+    constructor(width, min, max, end1 = min, end2 = max, step = 1) {
         // visual
         this.width = width;
         this.x = 0;
