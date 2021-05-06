@@ -43,8 +43,8 @@ function draw() {
   for (let j = 0; j < 30; j++) {
     let row = j % 5;
     let column = floor(j / 5);
-    let x = 350 + 140 * column;
-    let y = 160 + 90 * row;
+    let x = width/3 + 150 * column;
+    let y = height/3 - 20 + 100 * row;
     drawRaindrop(x, y, dataHumidity);
 
     // data.get(0)
@@ -53,7 +53,10 @@ function draw() {
 
     // rainTable.get(m, "inches")*10
     // inches是他这里的降水量
-
+    fill('white');
+    textSize(100);
+    textAlign(CENTER)
+    text("Raining With You", 0, 30, width);
   }
 }
 
