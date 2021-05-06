@@ -2,6 +2,7 @@ let dayString;
 let data = [];
 let dataHumidity;
 
+
 function preload() {
   for (let i = 1; i <= 30; i++) {
     //for (let i = 21; i <= 21; i++) {
@@ -99,3 +100,4 @@ function drawRaindrop(x, y, dayHumidity) {
   // }
 }
 }
+
