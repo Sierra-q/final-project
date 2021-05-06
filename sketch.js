@@ -19,7 +19,7 @@ function preload() {
     console.info(obj.x)
     console.info(obj["x"])
 
-    
+
     console.info(data[0])
     // console.log(hourData);
     // noLoop();
@@ -43,8 +43,8 @@ function draw() {
   for (let j = 0; j < 30; j++) {
     let row = j % 5;
     let column = floor(j / 5);
-    let x = width/3 + 150 * column;
-    let y = height/3 - 20 + 100 * row;
+    let x = width / 3 + 150 * column;
+    let y = height / 3 - 20 + 100 * row;
     drawRaindrop(x, y, dataHumidity);
 
     // data.get(0)
@@ -55,7 +55,8 @@ function draw() {
     // inches是他这里的降水量
     fill('white');
     textSize(100);
-    textAlign(CENTER)
+    textAlign(CENTER);
+    textFont("Merienda");
     text("Raining With You", 0, 30, width);
   }
 }
