@@ -127,7 +127,7 @@ class Slider {
         textString += "\nend1: " + this.end1;
         textString += "\nend2: " + this.end2;
         textSize(25);
-        text(textString, 0, 100);
+        text(textString, 50, 50);
         pop();
     }
 }

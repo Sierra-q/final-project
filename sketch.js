@@ -1,6 +1,6 @@
 let dayString;
 let data = [];
-let dataHumidity;
+let dataHumiditys = [];
 
 // initiation
 let slider0;
@@ -43,10 +43,10 @@ function setup() {
 
   //slider
   slider0 = new Slider(300, 0, 100, 20, 80);
-  slider0.position(100, 200);
+  slider0.position(width / 12, height / 3);
 
   slider1 = new Slider(300, 0, 30, 6, 24);
-  slider1.position(100, 500);
+  slider1.position(width / 12, 2 * height / 3);
 }
 
 function draw() {
@@ -68,14 +68,12 @@ function draw() {
   }
 
 
-  // for (let m = 0; m <= 29; m++) {
-  //   let dayHumidity = data[1][n].humidity;
-  //   for (let n = 0; n < dayHumidity.length; n++) {
-  //     sum += dayHumidity[n];
-  //   }
-  //   let average = sum / dayHumidity.length;
+  // for (let n = 0; n <= 71; n++) {
+  //   let dataHumiditys[n] = data[1][n].Humidity
+  //   sum += dataHumidity[n];
+  //   let average = sum / 71;
   //   print("average:", average);
-  //   dataHumidity = data[m][n].humidity;
+  //   let dataHumidity = data[1][n].humidity;
   // }
 
 
