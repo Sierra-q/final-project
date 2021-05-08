@@ -39,7 +39,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(225);
+  //background('SlateBlue');
 
   //slider
   slider0 = new Slider(300, 0, 100, 20, 80);
@@ -50,7 +50,7 @@ function setup() {
 }
 
 function draw() {
-  background(200);
+  background(224, 218, 252);
 
   // refreash slider0
   slider0.update();
@@ -93,6 +93,8 @@ function draw() {
 
     // drawRaindrop(x, y, dataHumidity);
     textSize(20);
+    strokeWeight(4);
+    stroke(198, 205, 233);
     text(days[j], x - 5, y + 80);
 
 
@@ -104,6 +106,8 @@ function draw() {
     // inches是他这里的降水量
     fill('white');
     textSize(100);
+    strokeWeight(5);
+    stroke('RebeccaPurple');
     textAlign(CENTER);
     textFont("Merienda");
     text("Raining With You", 0, 30, width);

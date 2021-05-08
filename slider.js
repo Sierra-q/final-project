@@ -94,6 +94,7 @@ class Slider {
         // line
         stroke(0);
         strokeWeight(5);
+
         line(0, 0, this.width, 0);
 
         // range
@@ -105,6 +106,7 @@ class Slider {
         // end1
         if (this.mouseOnEnd1()) {
             stroke(255);
+            fill(0);
             circle(map(this.end1, this.min, this.max, 0, this.width), 0, 10);
         } else {
             stroke(200);
@@ -120,7 +122,7 @@ class Slider {
         }
 
         noStroke();
-        fill(255);
+        fill(50, 50, 180);
         let textString = "min: " + this.min;
         textString += "\nmax: " + this.max;
         textString += "\nstep: " + this.step;
