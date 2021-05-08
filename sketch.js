@@ -57,7 +57,7 @@ function draw() {
   slider0.display();
   slider1.update();
   slider1.display();
-
+  //console.log(slider1.end1);
 
   for (let m = 0; m <= 29; m++) {
     for (let n = 0; n <= 71; n++) {
@@ -85,7 +85,7 @@ function draw() {
     let x = width / 3 + 150 * column;
     let y = height / 3 - 20 + 100 * row;
 
-    if (j < this.end1) {
+    if (j < slider1.end1 || j > slider1.end2) {
       // drawRaindrop(x, y, 0);
     } else {
       drawRaindrop(x, y, dataHumidity);
