@@ -2,7 +2,12 @@ let dayString;
 let data = [];
 let dataHumidity;
 
+// initiation
+let slider0;
+let slider1;
 
+//avg of data humidity
+let sum = 0;
 
 function preload() {
   for (let i = 1; i <= 30; i++) {
@@ -14,15 +19,15 @@ function preload() {
     }
     data.push(loadJSON("shanghai-2021-04-" + dayString + ".json"));
     let hourData = Array.from(Object.values(data));
-    console.log(data);
+    // console.log(data);
 
 
     let obj = { x: 10, y: 20 }
-    console.info(obj.x)
-    console.info(obj["x"])
+    // console.info(obj.x)
+    // console.info(obj["x"])
 
 
-    console.info(data[0])
+    // console.info(data[0])
     // console.log(hourData);
     // noLoop();
     // console.log(dayString);
@@ -33,29 +38,63 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(225);
 
-  //slider 
+  //slider
   slider0 = new Slider(300, 0, 100, 20, 80);
-  slider0.position(500, 200);
+  slider0.position(100, 200);
+
+  slider1 = new Slider(300, 0, 30, 6, 24);
+  slider1.position(100, 500);
 }
 
 function draw() {
   background(200);
+
+  // refreash slider0
+  slider0.update();
+  slider0.display();
+  slider1.update();
+  slider1.display();
+
+
   for (let m = 0; m <= 29; m++) {
     for (let n = 0; n <= 71; n++) {
-      let dataHumidity = data[m][n].humidity;
-      // console.info( data[m][n].humidity )
+      dataHumidity = data[m][n].humidity;
     }
+    // console.log(data[m][n]);
+    console.info(dataHumidity);
   }
+
+
+  // for (let m = 0; m <= 29; m++) {
+  //   let dayHumidity = data[1][n].humidity;
+  //   for (let n = 0; n < dayHumidity.length; n++) {
+  //     sum += dayHumidity[n];
+  //   }
+  //   let average = sum / dayHumidity.length;
+  //   print("average:", average);
+  //   dataHumidity = data[m][n].humidity;
+  // }
+
+
+
   for (let j = 0; j < 30; j++) {
-    let row = j % 5;
-    let column = floor(j / 5);
+    // let row = j % 5;
+    // let column = floor(j / 5);
+    let row = floor(j / 6);
+    let column = j % 6;
     let x = width / 3 + 150 * column;
     let y = height / 3 - 20 + 100 * row;
-    drawRaindrop(x, y, dataHumidity);
+
+    if (this.end1 < 5) {
+      // drawRaindrop(x, y, 0);
+    } else {
+      drawRaindrop(x, y, dataHumidity);
+    }
+
 
     // data.get(0)
     // data[0]
-    console.info(dataHumidity);
+    //console.info(dataHumidity);
 
     // rainTable.get(m, "inches")*10
     // inches是他这里的降水量
@@ -83,7 +122,7 @@ function drawRaindrop(x, y, dataHumidity) {
   else if (dataHumidity > 20) {
     fill("#608CD8");
   }
-  else if (dataHumidity > 10) {
+  else if (dataHumidity > 0) {
 
     fill("#83A7E1");
   }
