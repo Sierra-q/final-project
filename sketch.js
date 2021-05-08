@@ -42,16 +42,17 @@ function setup() {
   //background('SlateBlue');
 
   //slider
-  slider0 = new Slider(300, 0, 100, 20, 80);
-  slider0.position(width / 12, height / 3);
+  slider0 = new Slider(250, 0, 100, 20, 80);
+  slider0.position(width / 15, height / 3);
 
-  slider1 = new Slider(300, 0, 30, 6, 24);
-  slider1.position(width / 12, 2 * height / 3);
+  slider1 = new Slider(250, 0, 30, 6, 24);
+  slider1.position(width / 15, 2 * height / 3);
 }
 
 function draw() {
   background(224, 218, 252);
-
+  //fill(240);
+  rect(0, 220, width / 4, height);
   // refreash slider0
   slider0.update();
   slider0.display();
@@ -83,7 +84,7 @@ function draw() {
     let row = floor(j / 6);
     let column = j % 6;
     let x = width / 3 + 150 * column;
-    let y = height / 3 - 20 + 100 * row;
+    let y = height / 3 - 40 + 100 * row;
 
     if (j < slider1.end1 || j > slider1.end2) {
       // drawRaindrop(x, y, 0);
