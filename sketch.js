@@ -1,7 +1,7 @@
 let dayString;
 let data = [];
 let dataHumidity;
-
+let days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 
 
 function preload() {
@@ -52,6 +52,8 @@ function draw() {
     let x = width / 3 + 150 * column;
     let y = height / 3 - 20 + 100 * row;
     drawRaindrop(x, y, dataHumidity);
+    textSize(20);
+		text(days[i],x-5, y+ 80);
 
     // data.get(0)
     // data[0]
