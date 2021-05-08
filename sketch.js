@@ -6,6 +6,9 @@ let dataHumidity;
 let slider0;
 let slider1;
 
+let days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+//>>>>>>> 6d14e9bdce15e05cf454f78590ce4622cc5be592
+
 //avg of data humidity
 let sum = 0;
 
@@ -61,7 +64,7 @@ function draw() {
       dataHumidity = data[m][n].humidity;
     }
     // console.log(data[m][n]);
-    console.info(dataHumidity);
+    //console.info(dataHumidity);
   }
 
 
@@ -76,7 +79,6 @@ function draw() {
   // }
 
 
-
   for (let j = 0; j < 30; j++) {
     // let row = j % 5;
     // let column = floor(j / 5);
@@ -85,11 +87,15 @@ function draw() {
     let x = width / 3 + 150 * column;
     let y = height / 3 - 20 + 100 * row;
 
-    if (this.end1 < 5) {
+    if (j < this.end1) {
       // drawRaindrop(x, y, 0);
     } else {
       drawRaindrop(x, y, dataHumidity);
     }
+
+    // drawRaindrop(x, y, dataHumidity);
+    textSize(20);
+    text(days[j], x - 5, y + 80);
 
 
     // data.get(0)
@@ -136,7 +142,6 @@ function drawRaindrop(x, y, dataHumidity) {
       // ellipse(x, y + i * 1.5, i, i);
       // 		https://openprocessing.org/sketch/723484
     }
-
     // <-  
 
     for (let m = 2; m < 30; m++) {
