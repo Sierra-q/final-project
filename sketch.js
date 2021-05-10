@@ -52,7 +52,7 @@ function setup() {
 function draw() {
   background(224, 218, 252);
   //fill(240);
-  rect(0, 220, width / 4, height);
+  // rect(0, 220, width / 4, height);
   // refreash slider0
   slider0.update();
   slider0.display();
