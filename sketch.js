@@ -38,17 +38,6 @@ function preload() {
   }
 }
 
-// function setup(){
-//   if (page === 1) {
-// 		setup1();
-// 	} else {
-// 		setup23();
-// }
-
-// function setup1() {
-// 	createCanvas(3/4*windowWidth, 3/4*windowHeight);
-// }
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //background('SlateBlue');
@@ -105,7 +94,12 @@ function draw1() {
 }
 
 	function drawFront(){
-	background(224, 218, 252);
+	//background(224, 218, 252);
+  // background(10, 159, 221);
+  background(255, 240, 255)
+  fill(224, 218, 252);
+  noStroke();
+    rect(width/6,height/6,width/1.5,height/1.5);
     fill('white');
     textSize(100);
     strokeWeight(5);
@@ -115,12 +109,12 @@ function draw1() {
     text("Raining With You", 0, 0.4* height, width);
 	  textSize(28);
 	  text("Shanghai:\n 31° 13' 27.6996'' N,\n 121° 28' 9.0120'' E,\n 2020.04.01-2020.04.30",0,0.6*height,width);
-		fill('SlateBlue');
-		circle(25,25,15);
-		circle(width-25,25,15);
-		circle(width-25,height-25,15);
-		circle(25,height-25,15);
-	
+		
+    fill('SlateBlue');
+		circle(width/6+40,height/6+40,20);
+		circle(5*width/6-40,height/6+40,20);
+		circle(width/6+40,5*height/6-40,20);
+		circle(5*width/6-40,5*height/6-40,20);
 }
 
 function draw2() {
@@ -211,7 +205,10 @@ function drawRaindrop(x, y, dataHumidity) {
       // ellipse(x, y + i * 1.5, i, i);
       // 		https://openprocessing.org/sketch/723484
     }
-    // <-  
+    
+    if (d<= 20 && mouseIsPressed){
+      page=3
+    }
 
     for (let m = 2; m < 30; m++) {
       ellipse(x, y + m * 1.5, m, m);
