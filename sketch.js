@@ -58,7 +58,7 @@ function setup() {
     //console.info(dayHumiditys);
     let avg = average(dayHumiditys);
     dataHumidity.push(avg);
-    console.info(dataHumidity);
+    // console.info(dataHumidity);
   }
 
   //   dataHumidity.push(data[m].humidity);
@@ -195,14 +195,9 @@ function drawRaindrop(x, y, dataHumidity) {
     fill("#608CD8");
   }
   else if (dataHumidity > 0) {
-
     fill("#83A7E1");
   }
   noStroke();
-  // fillRaindropColor();
-  // fill(c);
-
-
   for (var i = 2; i < 30; i++) {
     let d = dist(x, y + i * 1.5, mouseX, mouseY);
     if (d <= 20) {
@@ -214,6 +209,8 @@ function drawRaindrop(x, y, dataHumidity) {
     for (let m = 2; m < 30; m++) {
       ellipse(x, y + m * 1.5, m, m);
     }
+    
+    // fillRaindropColor();
 
     if (page===2 && d<= 20 && mouseIsPressed){
       page=3
@@ -234,7 +231,7 @@ function draw3() {
 
 function gradient1(){
 	let whiteColor = color(255, 255, 255);
-	let blueColor = color(0, 0, 255);
+	let blueColor = color("RebeccaPurple");
 	// textSize(15);
 	// stroke("black")
 	// text("12am",10,10);
@@ -354,7 +351,7 @@ function button(){
 
 function average(dayHumiditys) {
   avg = sum(dayHumiditys) / dayHumiditys.length;
-  console.info(avg);
+  // console.info(avg);
   return avg;
 }
 
@@ -365,15 +362,26 @@ function sum(dayHumiditys) {
     //  total += data[i][0].humidity;
   }
   return total;
-  console.info(total);
+  // console.info(total);
 }
 
+// let scaledHumidity = [];
+// let c = [];
 
 // function fillRaindropColor() {
-//   let highColor = (0, 0, 139);
-//   let lowColor = (135, 206, 250);
-//   scaledHumidity = map(dataHumidity[0], 50, 60, 0, 1);
-//   let c = lerpColor(highColor, lowColor, scaledHumidity);
-//   return c;
+//   let highColor = color(0, 0, 139);
+//   let lowColor = color(135, 206, 250);
+//   colorMode(RGB);
+
+//   for (i=0;i<dataHumidity.length;i++){
+//     // console.log(dataHumidity[i]);
+//     scaledHumidity[i] = map(dataHumidity[i], 50, 65, 0, 1);
+//     // console.log(scaledHumidity[i]);
+//     c[i] = lerpColor(highColor, lowColor, scaledHumidity[i]); 
+//     console.log(c[i]);
+    // fill(c[i]);
+  // }
+  // return {};
+  // console.log(c);
 // }
 
