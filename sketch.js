@@ -78,6 +78,9 @@ function draw() {
 		draw1();
 	} else if (page === 2){
 		draw2();
+    // if (d<= 20 && mouseIsPressed){
+    //   page=3
+    // }
 	} else if (page === 3){
     draw3();
   }
@@ -89,6 +92,7 @@ function mousePressed(){
 	} 
 }
 
+//front page
 function draw1() {
 	drawFront();
 }
@@ -117,6 +121,7 @@ function draw1() {
 		circle(5*width/6-40,5*height/6-40,20);
 }
 
+// mainpage
 function draw2() {
   background(224, 218, 252);
   //fill(240);
@@ -174,28 +179,28 @@ function draw2() {
 }
 
 function drawRaindrop(x, y, dataHumidity) {
-  // if (dataHumidity > 60) {
-  //   fill("#004CBB");
-  // }
-  // else if (dataHumidity > 50) {
-  //   fill("#0C55C1");
-  // }
-  // else if (dataHumidity > 40) {
-  //   fill("#2C67C9");
-  // }
-  // else if (dataHumidity > 30) {
-  //   fill("#4C7DD3");
-  // }
-  // else if (dataHumidity > 20) {
-  //   fill("#608CD8");
-  // }
-  // else if (dataHumidity > 0) {
+  if (dataHumidity > 60) {
+    fill("#004CBB");
+  }
+  else if (dataHumidity > 50) {
+    fill("#0C55C1");
+  }
+  else if (dataHumidity > 40) {
+    fill("#2C67C9");
+  }
+  else if (dataHumidity > 30) {
+    fill("#4C7DD3");
+  }
+  else if (dataHumidity > 20) {
+    fill("#608CD8");
+  }
+  else if (dataHumidity > 0) {
 
-  //   fill("#83A7E1");
-  // }
-  // noStroke();
-  fillRaindropColor();
-  fill(c);
+    fill("#83A7E1");
+  }
+  noStroke();
+  // fillRaindropColor();
+  // fill(c);
 
 
   for (var i = 2; i < 30; i++) {
@@ -205,22 +210,23 @@ function drawRaindrop(x, y, dataHumidity) {
       // ellipse(x, y + i * 1.5, i, i);
       // 		https://openprocessing.org/sketch/723484
     }
-    
-    if (d<= 20 && mouseIsPressed){
-      page=3
-    }
 
     for (let m = 2; m < 30; m++) {
       ellipse(x, y + m * 1.5, m, m);
     }
 
+    if (page===2 && d<= 20 && mouseIsPressed){
+      page=3
+    }
     // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
     // 		Stroke('black');
     // }
   }
 }
 
+//second page
 function draw3() {
+  background(224, 218, 252);
 	gradient1();
 	gradient2();
 	button();
@@ -242,7 +248,7 @@ function gradient1(){
 		textSize(20);
 		stroke("black");
 		strokeWeight(2);
-		text("00:00",width/2-470,height*2/3);
+		text("00:00",width/2-450,height*2/3);
 		}	
 	
 	for (let i = PI+PI/4; i > PI+PI/8; i -= 0.01) {
@@ -285,7 +291,7 @@ function gradient1(){
 		arc(width/2, height*2/3, 800, 600, PI+PI/2, i);
 		stroke("black");
 		strokeWeight(2);
-		text("12:00",width/2-20,height*2/3- 320);
+		text("12:00",width/2-10,height*2/3- 320);
 		}	
 	
 	for (let i = PI+PI/8*6; i > PI+PI/8*5; i -= 0.01) {
@@ -313,7 +319,7 @@ function gradient1(){
 		textSize(20);
 		stroke("black");
 		strokeWeight(2);
-		text("24:00",width/2+430,height*2/3);
+		text("24:00",width/2+440,height*2/3);
 		}	
 }
 
@@ -339,7 +345,11 @@ function button(){
 	fill("#83A7E1");
 	rect(width-160,60,100,40,10);
 	fill("white");
-	text("BACK", width-140,87)
+	text("BACK", width-110,87);
+  let d = dist(width-110,65,mouseX,mouseY);
+  if (d <= 54 && mouseIsPressed){
+    page=2;
+  }
 }
 
 function average(dayHumiditys) {
@@ -359,11 +369,11 @@ function sum(dayHumiditys) {
 }
 
 
-function fillRaindropColor() {
-  let highColor = (0, 0, 139);
-  let lowColor = (135, 206, 250);
-  scaledHumidity = map(dataHumidity[0], 50, 60, 0, 1);
-  let c = lerpColor(highColor, lowColor, scaledHumidity);
-  return c;
-}
+// function fillRaindropColor() {
+//   let highColor = (0, 0, 139);
+//   let lowColor = (135, 206, 250);
+//   scaledHumidity = map(dataHumidity[0], 50, 60, 0, 1);
+//   let c = lerpColor(highColor, lowColor, scaledHumidity);
+//   return c;
+// }
 
