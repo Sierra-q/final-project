@@ -94,7 +94,7 @@ class Slider {
         // line
         stroke(0);
         strokeWeight(5);
-
+        stroke('RebeccaPurple');
         line(0, 0, this.width, 0);
 
         // range
@@ -106,18 +106,21 @@ class Slider {
         // end1
         if (this.mouseOnEnd1()) {
             stroke(255);
-            fill(0);
+            strokeWeight(10);
             circle(map(this.end1, this.min, this.max, 0, this.width), 0, 10);
         } else {
             stroke(200);
+            strokeWeight(10);
             circle(map(this.end1, this.min, this.max, 0, this.width), 0, 10);
         }
         // end2
         if (this.mouseOnEnd2()) {
             stroke(255);
+            strokeWeight(10);
             circle(map(this.end2, this.min, this.max, 0, this.width), 0, 10);
         } else {
             stroke(200);
+            strokeWeight(10);
             circle(map(this.end2, this.min, this.max, 0, this.width), 0, 10);
         }
 
