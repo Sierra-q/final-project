@@ -4,6 +4,7 @@ let dayHumiditys = [];
 let avg;
 let total;
 let dataHumidity = [];
+let page = 1;
 
 
 // initiation
@@ -36,6 +37,17 @@ function preload() {
     // console.log(dayString);
   }
 }
+
+// function setup(){
+//   if (page === 1) {
+// 		setup1();
+// 	} else {
+// 		setup23();
+// }
+
+// function setup1() {
+// 	createCanvas(3/4*windowWidth, 3/4*windowHeight);
+// }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -70,7 +82,48 @@ function setup() {
 
 }
 
+
+
 function draw() {
+	if (page === 1) {
+		draw1();
+	} else if (page === 2){
+		draw2();
+	} else if (page === 3){
+    draw3();
+  }
+}
+
+function mousePressed(){
+	if (page === 1){
+		page ++;
+	} 
+}
+
+function draw1() {
+	drawFront();
+}
+
+	function drawFront(){
+	background(224, 218, 252);
+    fill('white');
+    textSize(100);
+    strokeWeight(5);
+    stroke('RebeccaPurple');
+    textAlign(CENTER);
+    textFont("Merienda");
+    text("Raining With You", 0, 0.4* height, width);
+	  textSize(28);
+	  text("Shanghai:\n 31° 13' 27.6996'' N,\n 121° 28' 9.0120'' E,\n 2020.04.01-2020.04.30",0,0.6*height,width);
+		fill('SlateBlue');
+		circle(25,25,15);
+		circle(width-25,25,15);
+		circle(width-25,height-25,15);
+		circle(25,height-25,15);
+	
+}
+
+function draw2() {
   background(224, 218, 252);
   //fill(240);
   // rect(0, 220, width / 4, height);
@@ -170,6 +223,128 @@ function drawRaindrop(x, y, dataHumidity) {
   }
 }
 
+function draw3() {
+	gradient1();
+	gradient2();
+	button();
+}
+
+function gradient1(){
+	let whiteColor = color(255, 255, 255);
+	let blueColor = color(0, 0, 255);
+	// textSize(15);
+	// stroke("black")
+	// text("12am",10,10);
+	
+	for (let i = PI+PI/8; i > PI; i -= 0.01) {
+		let s = map(i, PI, PI+PI/8, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI, i);
+		textSize(20);
+		stroke("black");
+		strokeWeight(2);
+		text("00:00",width/2-470,height*2/3);
+		}	
+	
+	for (let i = PI+PI/4; i > PI+PI/8; i -= 0.01) {
+		let s = map(i, PI+PI/8, PI+PI/4, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/8, i);
+		// textSize(20);
+		// stroke("black");
+		// strokeWeight(2);
+		// text("3am",width/2-410,height*2/3- 150);
+		}	
+	
+	for (let i = PI+PI/8*3; i > PI+PI/4; i -= 0.01) {
+		let s = map(i, PI+PI/4, PI+PI/8*3, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/4, i);
+		// textSize(20);
+		// stroke("black");
+		// strokeWeight(2);
+		// text("6am",width/2-300,height*2/3-250);
+		}	
+	
+	for (let i = PI+PI/2; i > PI+PI/8*3; i -= 0.01) {
+		let s = map(i, PI+PI/8*3, PI+PI/2, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/8*3, i);
+		}	
+
+	for (let i = PI+PI/8*5; i > PI+PI/2; i -= 0.01) {
+		let s = map(i, PI+PI/2, PI+PI/8*5, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/2, i);
+		stroke("black");
+		strokeWeight(2);
+		text("12:00",width/2-20,height*2/3- 320);
+		}	
+	
+	for (let i = PI+PI/8*6; i > PI+PI/8*5; i -= 0.01) {
+		let s = map(i, PI+PI/8*5, PI+PI/8*6, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/8*5, i);
+		}	
+	
+	for (let i = PI+PI/8*7; i > PI+PI/8*6; i -= 0.01) {
+		let s = map(i, PI+PI/8*6, PI+PI/8*7, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/8*6, i);
+		}	
+	
+	for (let i = TWO_PI; i > PI+PI/8*7; i -= 0.01) {
+		let s = map(i, PI+PI/8*7,TWO_PI, 0, 1);
+		let c = lerpColor(whiteColor, blueColor, s);
+		noStroke();
+		fill(c);
+		arc(width/2, height*2/3, 800, 600, PI+PI/8*7, i);
+		textSize(20);
+		stroke("black");
+		strokeWeight(2);
+		text("24:00",width/2+430,height*2/3);
+		}	
+}
+
+function gradient2(){
+	push();
+	// translate(x, y);
+	for (let i = width/2-250; i < width/2 + 250; i++) {
+		let s = map(i, width/2-250, width/2 + 250, 0,1)
+		let c = lerpColor(color("#83A7E1"), color("#004CBB"), s);
+		stroke(c);
+		// line(i, height-90, i, height-120);
+		rect(i-10, height-120, 50, 30,10);
+		fill(c);
+	}
+	pop();
+	
+	for (let i = 50; i <= 65; i+=5){
+		text(i,width/2-1850+i*32,height-60);
+	}
+}
+
+function button(){
+	fill("#83A7E1");
+	rect(width-160,60,100,40,10);
+	fill("white");
+	text("BACK", width-140,87)
+}
+
 function average(dayHumiditys) {
   avg = sum(dayHumiditys) / dayHumiditys.length;
   console.info(avg);
@@ -194,3 +369,4 @@ function fillRaindropColor() {
   let c = lerpColor(highColor, lowColor, scaledHumidity);
   return c;
 }
+
