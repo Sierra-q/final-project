@@ -1,6 +1,6 @@
 
 class Slider {
-    constructor(width, min, max, end1 = min, end2 = max, step = 1) {
+    constructor(width, min, max, end1 = min, end2 = max, step) {
         // visual
         this.width = width;
         this.x = 0;

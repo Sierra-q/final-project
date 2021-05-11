@@ -37,11 +37,11 @@ function setup() {
   //background('SlateBlue');
 
   //slider
-  slider0 = new Slider(250, 0, 100, 20, 80);
-  slider0.position(width / 15, height / 3);
+  slider0 = new Slider(250, 48, 66, 53, 62, 3);
+  slider0.position(width / 15, 2 * height / 3);
 
-  slider1 = new Slider(250, 0, 30, 6, 24);
-  slider1.position(width / 15, 2 * height / 3);
+  slider1 = new Slider(250, 0, 30, 6, 24, 1);
+  slider1.position(width / 15, height / 3);
 
 
   for (let m = 0; m <= 29; m++) {
@@ -184,8 +184,6 @@ function drawRaindrop(x, y, dataHumidity) {
     for (let m = 2; m < 30; m++) {
       ellipse(x, y + m * 1.5, m, m);
     }
-
-    // fillRaindropColor();
 
     // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
     // 		Stroke('black');
