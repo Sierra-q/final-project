@@ -52,7 +52,7 @@ function setup() {
     //console.info(dayHumiditys);
     let avg = average(dayHumiditys);
     dataHumidity.push(avg);
-    console.info(dataHumidity);
+    // console.info(dataHumidity);
   }
 
   //   dataHumidity.push(data[m].humidity);
@@ -168,52 +168,45 @@ function draw2() {
 }
 
 function drawRaindrop(x, y, dataHumidity) {
-  // if (dataHumidity > 60) {
-  //   fill("#004CBB");
-  // }
-  // else if (dataHumidity > 50) {
-  //   fill("#0C55C1");
-  // }
-  // else if (dataHumidity > 40) {
-  //   fill("#2C67C9");
-  // }
-  // else if (dataHumidity > 30) {
-  //   fill("#4C7DD3");
-  // }
-  // else if (dataHumidity > 20) {
-  //   fill("#608CD8");
-  // }
-  // else if (dataHumidity > 0) {
-  //   fill("#83A7E1");
-  // }
+  if (dataHumidity > 60) {
+    fill("#004CBB");
+  }
+  else if (dataHumidity > 50) {
+    fill("#0C55C1");
+  }
+  else if (dataHumidity > 40) {
+    fill("#2C67C9");
+  }
+  else if (dataHumidity > 30) {
+    fill("#4C7DD3");
+  }
+  else if (dataHumidity > 20) {
+    fill("#608CD8");
+  }
+  else if (dataHumidity > 0) {
+    fill("#83A7E1");
+  }
   noStroke();
-  fillRaindropColor();
-  // fill(c);
+  for (var i = 2; i < 30; i++) {
+    let d = dist(x, y + i * 1.5, mouseX, mouseY);
+    if (d <= 20) {
+      fill('white');
+      // ellipse(x, y + i * 1.5, i, i);
+      // 		https://openprocessing.org/sketch/723484
+    }
 
-}
+    for (let m = 2; m < 30; m++) {
+      ellipse(x, y + m * 1.5, m, m);
+    }
 
-for (var i = 2; i < 30; i++) {
-  let d = dist(x, y + i * 1.5, mouseX, mouseY);
-  if (d <= 20) {
-    fill('white');
-    // ellipse(x, y + i * 1.5, i, i);
-    // 		https://openprocessing.org/sketch/723484
-  }
-
-  if (d <= 20 && mouseIsPressed) {
-    page = 3
-  }
-
-  for (let m = 2; m < 30; m++) {
-    ellipse(x, y + m * 1.5, m, m);
-
+    // fillRaindropColor();
 
     // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
     // 		Stroke('black');
     // }
   }
   if (page === 2 && d <= 20 && mouseIsPressed) {
-    page = 3
+    page = 3;
   }
 }
 
@@ -227,7 +220,7 @@ function draw3() {
 
 function gradient1() {
   let whiteColor = color(255, 255, 255);
-  let blueColor = color(0, 0, 255);
+  let blueColor = color("RebeccaPurple");
   // textSize(15);
   // stroke("black")
   // text("12am",10,10);
@@ -347,7 +340,7 @@ function button() {
 
 function average(dayHumiditys) {
   avg = sum(dayHumiditys) / dayHumiditys.length;
-  console.info(avg);
+  // console.info(avg);
   return avg;
 }
 
@@ -358,16 +351,33 @@ function sum(dayHumiditys) {
     //  total += data[i][0].humidity;
   }
   return total;
-  //console.info(total);
+  // console.info(total);
 }
 
+let scaledHumidity = [];
+let colors = [];
+let newColors;
 
-function fillRaindropColor(dataHumidity) {
-  let highColor = (0, 0, 139);
-  let lowColor = (135, 206, 250);
-  scaledHumidity = dataHumidity.map(dataHumidity[0], 50, 60, 0, 1);
-  console.log(scaledHumidity);
-  let c = lerpColor(lowColor, highColor, scaledHumidity);
-  return c;
-  console.log(c);
+function fillRaindropColor() {
+  let highColor = color(0, 0, 139);
+  let lowColor = color(135, 206, 250);
+  colorMode(RGB);
+
+  for (i = 0; i < dataHumidity.length; i++) {
+    // console.log(dataHumidity[i]);
+    scaledHumidity[i] = map(dataHumidity[i], 50, 65, 0, 1);
+    // console.log(scaledHumidity[i]);
+    colors[i] = lerpColor(highColor, lowColor, scaledHumidity[i]);
+    console.log(colors[i]);
+
+    function returnColorArray() {
+      for (let j = 0; j < colors.length; j++) {
+        let c = [];
+        c.push(colors);
+        return c;
+      }
+    }
+    let newColors = returnColorArray();
+    console.log(newColors);
+  }
 }
