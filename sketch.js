@@ -184,14 +184,14 @@ function drawRaindrop(x, y, dataHumidity) {
     for (let m = 2; m < 30; m++) {
       ellipse(x, y + m * 1.5, m, m);
     }
-
+if (d<=20 && page === 2 && mouseIsPressed) {
+    page = 3;
+  }
     // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
     // 		Stroke('black');
     // }
   }
-  // if (page === 2 && mouseIsPressed) {
-  //   page = 3;
-  // }
+  
 }
 
 // function setFillBasedOnHumidity(dataHumidity) {
