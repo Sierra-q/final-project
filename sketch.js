@@ -168,24 +168,10 @@ function draw2() {
 }
 
 function drawRaindrop(x, y, dataHumidity) {
-  if (dataHumidity > 60) {
-    fill("#004CBB");
-  }
-  else if (dataHumidity > 50) {
-    fill("#0C55C1");
-  }
-  else if (dataHumidity > 40) {
-    fill("#2C67C9");
-  }
-  else if (dataHumidity > 30) {
-    fill("#4C7DD3");
-  }
-  else if (dataHumidity > 20) {
-    fill("#608CD8");
-  }
-  else if (dataHumidity > 0) {
-    fill("#83A7E1");
-  }
+
+  // set fill to a color based on the humidity
+  setFillBasedOnHumidity(dataHumidity);
+
   noStroke();
   for (var i = 2; i < 30; i++) {
     let d = dist(x, y + i * 1.5, mouseX, mouseY);
@@ -205,9 +191,44 @@ function drawRaindrop(x, y, dataHumidity) {
     // 		Stroke('black');
     // }
   }
-  if (page === 2 && d <= 20 && mouseIsPressed) {
-    page = 3;
-  }
+  // if (page === 2 && mouseIsPressed) {
+  //   page = 3;
+  // }
+}
+
+// function setFillBasedOnHumidity(dataHumidity) {
+//   if (dataHumidity > 60) {
+//     fill("#004CBB");
+//   }
+//   else if (dataHumidity > 50) {
+//     fill("#0C55C1");
+//   }
+//   else if (dataHumidity > 40) {
+//     fill("#2C67C9");
+//   }
+//   else if (dataHumidity > 30) {
+//     fill("#4C7DD3");
+//   }
+//   else if (dataHumidity > 20) {
+//     fill("#608CD8");
+//   }
+//   else if (dataHumidity > 0) {
+//     fill("#83A7E1");
+//   }
+// }
+let scaledHumidity;
+let colors;
+function setFillBasedOnHumidity(dataHumidity) {
+  // figures out a color based on dataHumidity
+  // fill(c)
+  let highColor = color(0, 0, 139);
+  //let lowColor = color(135, 206, 250);
+  let lowColor = color(135, 206, 250);
+
+  colorMode(RGB);
+  scaledHumidity = map(dataHumidity, 50, 65, 0, 1);
+  colors = lerpColor(lowColor, highColor, scaledHumidity);
+  fill(colors);
 }
 
 //second page
@@ -354,30 +375,30 @@ function sum(dayHumiditys) {
   // console.info(total);
 }
 
-let scaledHumidity = [];
-let colors = [];
-let newColors;
+// let scaledHumidity = [];
+// let colors = [];
+// let newColors;
 
-function fillRaindropColor() {
-  let highColor = color(0, 0, 139);
-  let lowColor = color(135, 206, 250);
-  colorMode(RGB);
+// function fillRaindropColor() {
+//   let highColor = color(0, 0, 139);
+//   let lowColor = color(135, 206, 250);
+//   colorMode(RGB);
 
-  for (i = 0; i < dataHumidity.length; i++) {
-    // console.log(dataHumidity[i]);
-    scaledHumidity[i] = map(dataHumidity[i], 50, 65, 0, 1);
-    // console.log(scaledHumidity[i]);
-    colors[i] = lerpColor(highColor, lowColor, scaledHumidity[i]);
-    console.log(colors[i]);
+//   for (i = 0; i < dataHumidity.length; i++) {
+//     // console.log(dataHumidity[i]);
+//     scaledHumidity[i] = map(dataHumidity[i], 50, 65, 0, 1);
+//     // console.log(scaledHumidity[i]);
+//     colors[i] = lerpColor(highColor, lowColor, scaledHumidity[i]);
+//     console.log(colors[i]);
 
-    function returnColorArray() {
-      for (let j = 0; j < colors.length; j++) {
-        let c = [];
-        c.push(colors);
-        return c;
-      }
-    }
-    let newColors = returnColorArray();
-    console.log(newColors);
-  }
-}
+//     function returnColorArray() {
+//       for (let j = 0; j < colors.length; j++) {
+//         let c = [];
+//         c.push(colors);
+//         return c;
+//       }
+//     }
+//     let newColors = returnColorArray();
+//     console.log(newColors);
+//   }
+// }
