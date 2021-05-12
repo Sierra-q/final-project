@@ -142,8 +142,8 @@ function draw2() {
     let y = height / 3 - 40 + 100 * row;
 
     let condition1 = j < slider1.end1 || j > slider1.end
-    let condition2 =
-    if (condition1 && condition2) {
+    //let condition2 =
+    if (condition1) {
       // drawRaindrop(x, y, 0);
     } else {
       drawRaindrop(x, y, dataHumidity[j]);
