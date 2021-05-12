@@ -141,11 +141,9 @@ function draw2() {
     let x = width / 3 + 150 * column;
     let y = height / 3 - 40 + 100 * row;
 
-    let condition1 = j < slider1.end1 || j > slider1.end
-    //let condition2 =
-    if (condition1) {
-      // drawRaindrop(x, y, 0);
-    } else {
+    let condition1 = j > slider1.end1 && j < slider1.end2
+    let condition2 = dataHumidity[j] > slider0.end1 && dataHumidity[j] < slider0.end2;
+    if (condition1 && condition2) {
       drawRaindrop(x, y, dataHumidity[j]);
     }
 
@@ -157,8 +155,6 @@ function draw2() {
   }
 
   // grid & slider0
-
-
 
   fill('white');
   textSize(100);
