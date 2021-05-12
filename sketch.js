@@ -45,7 +45,7 @@ function setup() {
 
 
   for (let m = 0; m <= 29; m++) {
-    // avg humidify for day #1
+    // avg humidity for day #1
     for (let n = 0; n <= 71; n++) {
       dayHumiditys.push(data[m][n].humidity);
     }
@@ -122,6 +122,8 @@ function draw2() {
   slider1.display();
   //console.log(slider1.end1);
 
+  // rainTable.get(m, "inches")*10
+  // inches是他这里的降水量
   // for (let m = 0; m <= 29; m++) {
   //   for (let n = 0; n <= 71; n++) {
   //     dataHumidity = data[m][n].humidity;
@@ -130,7 +132,7 @@ function draw2() {
   // console.log(data[m][n]);
   //console.info(dataHumidity);
 
-
+  // grid & slider1
   for (let j = 0; j < 30; j++) {
     // let row = j % 5;
     // let column = floor(j / 5);
@@ -139,7 +141,9 @@ function draw2() {
     let x = width / 3 + 150 * column;
     let y = height / 3 - 40 + 100 * row;
 
-    if (j < slider1.end1 || j > slider1.end2) {
+    let condition1 = j < slider1.end1 || j > slider1.end
+    let condition2 =
+    if (condition1 && condition2) {
       // drawRaindrop(x, y, 0);
     } else {
       drawRaindrop(x, y, dataHumidity[j]);
@@ -150,21 +154,19 @@ function draw2() {
     strokeWeight(4);
     stroke(198, 205, 233);
     text(days[j], x - 5, y + 80);
-
-    // data.get(0)
-    // data[0]
-    //console.info(dataHumidity);
-
-    // rainTable.get(m, "inches")*10
-    // inches是他这里的降水量
-    fill('white');
-    textSize(100);
-    strokeWeight(5);
-    stroke('RebeccaPurple');
-    textAlign(CENTER);
-    textFont("Merienda");
-    text("Raining With You", 0, 30, width);
   }
+
+  // grid & slider0
+
+
+
+  fill('white');
+  textSize(100);
+  strokeWeight(5);
+  stroke('RebeccaPurple');
+  textAlign(CENTER);
+  textFont("Merienda");
+  text("Raining With You", 0, 30, width);
 }
 
 function drawRaindrop(x, y, dataHumidity) {
@@ -179,6 +181,9 @@ function drawRaindrop(x, y, dataHumidity) {
       fill('white');
       // ellipse(x, y + i * 1.5, i, i);
       // 		https://openprocessing.org/sketch/723484
+      if (page === 2 && mouseIsPressed && d <= 20) {
+        page = 3;
+      }
     }
 
     for (let m = 2; m < 30; m++) {
@@ -189,36 +194,14 @@ function drawRaindrop(x, y, dataHumidity) {
     // 		Stroke('black');
     // }
   }
-  // if (page === 2 && mouseIsPressed) {
-  //   page = 3;
-  // }
+
 }
 
-// function setFillBasedOnHumidity(dataHumidity) {
-//   if (dataHumidity > 60) {
-//     fill("#004CBB");
-//   }
-//   else if (dataHumidity > 50) {
-//     fill("#0C55C1");
-//   }
-//   else if (dataHumidity > 40) {
-//     fill("#2C67C9");
-//   }
-//   else if (dataHumidity > 30) {
-//     fill("#4C7DD3");
-//   }
-//   else if (dataHumidity > 20) {
-//     fill("#608CD8");
-//   }
-//   else if (dataHumidity > 0) {
-//     fill("#83A7E1");
-//   }
-// }
+//fill raindrop color
 let scaledHumidity;
 let colors;
 function setFillBasedOnHumidity(dataHumidity) {
   // figures out a color based on dataHumidity
-  // fill(c)
   let highColor = color(0, 0, 139);
   //let lowColor = color(135, 206, 250);
   let lowColor = color(135, 206, 250);
@@ -230,12 +213,14 @@ function setFillBasedOnHumidity(dataHumidity) {
 }
 
 //second page
+
 function draw3() {
   background(224, 218, 252);
   gradient1();
   gradient2();
   button();
 }
+
 
 function gradient1() {
   let whiteColor = color(255, 255, 255);
@@ -372,31 +357,3 @@ function sum(dayHumiditys) {
   return total;
   // console.info(total);
 }
-
-// let scaledHumidity = [];
-// let colors = [];
-// let newColors;
-
-// function fillRaindropColor() {
-//   let highColor = color(0, 0, 139);
-//   let lowColor = color(135, 206, 250);
-//   colorMode(RGB);
-
-//   for (i = 0; i < dataHumidity.length; i++) {
-//     // console.log(dataHumidity[i]);
-//     scaledHumidity[i] = map(dataHumidity[i], 50, 65, 0, 1);
-//     // console.log(scaledHumidity[i]);
-//     colors[i] = lerpColor(highColor, lowColor, scaledHumidity[i]);
-//     console.log(colors[i]);
-
-//     function returnColorArray() {
-//       for (let j = 0; j < colors.length; j++) {
-//         let c = [];
-//         c.push(colors);
-//         return c;
-//       }
-//     }
-//     let newColors = returnColorArray();
-//     console.log(newColors);
-//   }
-// }
