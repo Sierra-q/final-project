@@ -45,16 +45,6 @@ function setup() {
   slider1.position(width / 15, height / 3);
 
 
-  console.info("data[dayIndex] =")
-  let dayIndex = 3;
-  console.info(data[dayIndex])
-  console.info("data[dayIndex][0] =")
-  console.info(data[dayIndex][0])
-  console.info("data[dayIndex][0].humidity =")
-  console.info(data[dayIndex][0].humidity)
-  console.info("data[dayIndex][8].humidity =")
-  console.info(data[dayIndex][8].humidity)
-
   for (let m = 0; m <= 29; m++) {
     // avg humidify for day #1
     for (let n = 0; n <= 71; n++) {
@@ -151,39 +141,25 @@ function draw2() {
     let x = width / 3 + 150 * column;
     let y = height / 3 - 40 + 100 * row;
 
-    // for (let m = 0; m<= 72; m+= 9){
-    //    dataEveryThreeHour=j*72+m;
-    // }
-    // return dataEveryThreeHour;
-
-      // datahumiditys[dataEveryThreeHour];
-
-    if (j < slider1.end1 || j > slider1.end2) {
-      // drawRaindrop(x, y, 0);
-    } else {
-      drawRaindrop(x, y, dataHumidity[j]);
-    }
+      let condition1 = j >= slider1.end1 && j < slider1.end2
+      let condition2 = dataHumidity[j] >= slider0.end1 && dataHumidity[j] < slider0.end2;
+      if (condition1 && condition2) {
+        drawRaindrop(x, y, dataHumidity[j]);
+      }
 
     // drawRaindrop(x, y, dataHumidity);
     textSize(20);
     strokeWeight(4);
     stroke(198, 205, 233);
     text(days[j], x - 5, y + 80);
-
-    // data.get(0)
-    // data[0]
-    //console.info(dataHumidity);
-
-    // rainTable.get(m, "inches")*10
-    // inches是他这里的降水量
-    fill('white');
+  }
+  fill('white');
     textSize(100);
     strokeWeight(5);
     stroke('RebeccaPurple');
     textAlign(CENTER);
     textFont("Merienda");
     text("Raining With You", 0, 30, width);
-  }
 }
 
 function drawRaindrop(x, y, dataHumidity) {
@@ -314,7 +290,7 @@ function draw3() {
 //   console.info(data[dayIndex][8].humidity)
 
 function drawArcs(data) {
-  scaledHumidity = map(data, 50, 65, 0, 1);
+  // scaledHumidity = map(data, 50, 65, 0, 1);
   arc1();
   arc2();
   arc3();
@@ -323,6 +299,10 @@ function drawArcs(data) {
   arc6();
   arc7();
   arc8();
+
+  // for (let i = 0; i < 8; i++) {
+  //   gradientTemperatureArc(i);
+  // }
 }
 
 // function gradient1() {
