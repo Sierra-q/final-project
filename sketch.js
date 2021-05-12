@@ -5,6 +5,7 @@ let avg;
 let total;
 let dataHumidity = [];
 let page = 1;
+let dayIndex;
 
 
 // initiation
@@ -43,6 +44,16 @@ function setup() {
   slider1 = new Slider(250, 0, 30, 6, 24, 1);
   slider1.position(width / 15, height / 3);
 
+
+  console.info("data[dayIndex] =")
+  let dayIndex = 3;
+  console.info(data[dayIndex])
+  console.info("data[dayIndex][0] =")
+  console.info(data[dayIndex][0])
+  console.info("data[dayIndex][0].humidity =")
+  console.info(data[dayIndex][0].humidity)
+  console.info("data[dayIndex][8].humidity =")
+  console.info(data[dayIndex][8].humidity)
 
   for (let m = 0; m <= 29; m++) {
     // avg humidify for day #1
@@ -130,6 +141,7 @@ function draw2() {
   // console.log(data[m][n]);
   //console.info(dataHumidity);
 
+//  let dataEveryThreeHour;
 
   for (let j = 0; j < 30; j++) {
     // let row = j % 5;
@@ -138,6 +150,13 @@ function draw2() {
     let column = j % 6;
     let x = width / 3 + 150 * column;
     let y = height / 3 - 40 + 100 * row;
+
+    // for (let m = 0; m<= 72; m+= 9){
+    //    dataEveryThreeHour=j*72+m;
+    // }
+    // return dataEveryThreeHour;
+
+      // datahumiditys[dataEveryThreeHour];
 
     if (j < slider1.end1 || j > slider1.end2) {
       // drawRaindrop(x, y, 0);
@@ -175,7 +194,7 @@ function drawRaindrop(x, y, dataHumidity) {
   noStroke();
   for (var i = 2; i < 30; i++) {
     let d = dist(x, y + i * 1.5, mouseX, mouseY);
-    if (d <= 20) {
+    if (d <= 15) {
       fill('white');
       // ellipse(x, y + i * 1.5, i, i);
       // 		https://openprocessing.org/sketch/723484
@@ -184,8 +203,13 @@ function drawRaindrop(x, y, dataHumidity) {
     for (let m = 2; m < 30; m++) {
       ellipse(x, y + m * 1.5, m, m);
     }
-if (d<=20 && page === 2 && mouseIsPressed) {
+if (d<=15 && page === 2 && mouseIsPressed) {
     page = 3;
+    // x = width / 3 + 150 * column;
+    // let y = height / 3 - 40 + 100 * row;
+    let row = floor((floor(mouseY)-height/3+40)/100);
+    let column=floor((floor(mouseX)-width/3)/150);
+    dayIndex = row*6+column;
   }
     // if (ptInRaindrop(mouseX,mouseY,x-i,y+i*1.5+i,x+i,y+i*1.5-i)){
     // 		Stroke('black');
@@ -215,8 +239,27 @@ if (d<=20 && page === 2 && mouseIsPressed) {
 //   }
 // }
 let scaledHumidity;
-let colors;
+
 function setFillBasedOnHumidity(dataHumidity) {
+  // fill(c)
+  let aColor = colorForHumidity(dataHumidity);
+  fill(aColor);
+}
+
+// figures out a color based on dataHumidity
+function colorForHumidity(dataHumidity) {
+  let highColor = color(0, 0, 139);
+  //let lowColor = color(135, 206, 250);
+  let lowColor = color(135, 206, 250);
+
+  colorMode(RGB);
+  scaledHumidity = map(dataHumidity, 50, 65, 0, 1);
+  let aColor = lerpColor(lowColor, highColor, scaledHumidity);
+  return aColor;
+}
+
+function calculateArcStartColor(arcIndex) {
+  
   // figures out a color based on dataHumidity
   // fill(c)
   let highColor = color(0, 0, 139);
@@ -224,29 +267,80 @@ function setFillBasedOnHumidity(dataHumidity) {
   let lowColor = color(135, 206, 250);
 
   colorMode(RGB);
-  scaledHumidity = map(dataHumidity, 50, 65, 0, 1);
-  colors = lerpColor(lowColor, highColor, scaledHumidity);
-  fill(colors);
+  // console.info(data)
+  scaledHumidity1 = map(data[dayIndex][arcIndex*8].humidity, 50, 75, 0, 1);
+  // scaledHumidity2 = map(data[dayIndex][m+8].humidity, 50, 75, 0, 1);
+  let c1 = lerpColor(lowColor, highColor, scaledHumidity1);
+  // let c2 = lerpColor(lowColor, highColor, scaledHumidity2);
+  return c1;
+  
+}
+
+function calculateArcStopColor(arcIndex) {
+  
+    // figures out a color based on dataHumidity
+    // fill(c)
+    let highColor = color(0, 0, 139);
+    //let lowColor = color(135, 206, 250);
+    let lowColor = color(135, 206, 250);
+  
+    colorMode(RGB);
+    // console.info(data)
+    scaledHumidity2 = map(data[dayIndex][arcIndex*8+8].humidity, 50, 75, 0, 1);
+    // scaledHumidity2 = map(data[dayIndex][m+8].humidity, 50, 75, 0, 1);
+    let c2 = lerpColor(lowColor, highColor, scaledHumidity2);
+    // let c2 = lerpColor(lowColor, highColor, scaledHumidity2);
+    return c2;
+  
 }
 
 //second page
 function draw3() {
   background(224, 218, 252);
-  gradient1();
+  drawArcs();
+  // gradient1();
   gradient2();
   button();
 }
 
-function gradient1() {
-  let whiteColor = color(255, 255, 255);
-  let blueColor = color("RebeccaPurple");
+// console.info("data[dayIndex] =")
+  
+//   console.info(data[dayIndex])
+//   console.info("data[dayIndex][0] =")
+//   console.info(data[dayIndex][0])
+//   console.info("data[dayIndex][0].humidity =")
+//   console.info(data[dayIndex][0].humidity)
+//   console.info("data[dayIndex][8].humidity =")
+//   console.info(data[dayIndex][8].humidity)
+
+function drawArcs(data) {
+  scaledHumidity = map(data, 50, 65, 0, 1);
+  arc1();
+  arc2();
+  arc3();
+  arc4();
+  arc5();
+  arc6();
+  arc7();
+  arc8();
+}
+
+// function gradient1() {
+  // let whiteColor = color(255, 255, 255);
+  // let blueColor = color("RebeccaPurple");
   // textSize(15);
   // stroke("black")
   // text("12am",10,10);
+  // calculateColorBasedOnHumidity();
+  
+function arc1(){
+  let c1 = calculateArcStartColor(0);
+  let c2 = calculateArcStopColor(0);
+  
 
   for (let i = PI + PI / 8; i > PI; i -= 0.01) {
     let s = map(i, PI, PI + PI / 8, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI, i);
@@ -255,10 +349,15 @@ function gradient1() {
     strokeWeight(2);
     text("00:00", width / 2 - 450, height * 2 / 3);
   }
+  }
+
+function arc2(){
+  let c1 = calculateArcStartColor(1);
+  let c2 = calculateArcStopColor(1);
 
   for (let i = PI + PI / 4; i > PI + PI / 8; i -= 0.01) {
     let s = map(i, PI + PI / 8, PI + PI / 4, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 8, i);
@@ -267,10 +366,14 @@ function gradient1() {
     // strokeWeight(2);
     // text("3am",width/2-410,height*2/3- 150);
   }
+}
 
+function arc3(){
+  let c1 = calculateArcStartColor(2);
+  let c2 = calculateArcStopColor(2);
   for (let i = PI + PI / 8 * 3; i > PI + PI / 4; i -= 0.01) {
     let s = map(i, PI + PI / 4, PI + PI / 8 * 3, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 4, i);
@@ -279,18 +382,26 @@ function gradient1() {
     // strokeWeight(2);
     // text("6am",width/2-300,height*2/3-250);
   }
+}
 
+function arc4(){
+  let c1 = calculateArcStartColor(3);
+  let c2 = calculateArcStopColor(3);
   for (let i = PI + PI / 2; i > PI + PI / 8 * 3; i -= 0.01) {
     let s = map(i, PI + PI / 8 * 3, PI + PI / 2, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 8 * 3, i);
   }
+}
 
+function arc5(){
+  let c1 = calculateArcStartColor(4);
+  let c2 = calculateArcStopColor(4);
   for (let i = PI + PI / 8 * 5; i > PI + PI / 2; i -= 0.01) {
     let s = map(i, PI + PI / 2, PI + PI / 8 * 5, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 2, i);
@@ -298,26 +409,38 @@ function gradient1() {
     strokeWeight(2);
     text("12:00", width / 2 - 10, height * 2 / 3 - 320);
   }
+}
 
-  for (let i = PI + PI / 8 * 6; i > PI + PI / 8 * 5; i -= 0.01) {
+function arc6(){
+  let c1 = calculateArcStartColor(5);
+  let c2 = calculateArcStopColor(5);
+    for (let i = PI + PI / 8 * 6; i > PI + PI / 8 * 5; i -= 0.01) {
     let s = map(i, PI + PI / 8 * 5, PI + PI / 8 * 6, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 8 * 5, i);
   }
+}
 
+function arc7(){
+  let c1 = calculateArcStartColor(6);
+  let c2 = calculateArcStopColor(6);
   for (let i = PI + PI / 8 * 7; i > PI + PI / 8 * 6; i -= 0.01) {
     let s = map(i, PI + PI / 8 * 6, PI + PI / 8 * 7, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 8 * 6, i);
   }
+}
 
+function arc8(){
+  let c1 = calculateArcStartColor(7);
+  let c2 = calculateArcStopColor(7);
   for (let i = TWO_PI; i > PI + PI / 8 * 7; i -= 0.01) {
     let s = map(i, PI + PI / 8 * 7, TWO_PI, 0, 1);
-    let c = lerpColor(whiteColor, blueColor, s);
+    let c = lerpColor(c1, c2, s);
     noStroke();
     fill(c);
     arc(width / 2, height * 2 / 3, 800, 600, PI + PI / 8 * 7, i);
