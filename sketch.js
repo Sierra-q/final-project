@@ -34,11 +34,6 @@ function setup() {
   slider0.position(width / 15, 2 * height / 3);
   slider1 = new Slider(250, 0, 30, 6, 24, 1);
   slider1.position(width / 15, height / 3);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 353d031221185c49a3cad3f8d567985bbde0a033
   for (let m = 0; m <= 29; m++) {
     // avg humidify for day #1
     for (let n = 0; n <= 71; n++) {
@@ -122,21 +117,11 @@ function draw2() {
     let column = j % 6;
     let x = width / 3 + 150 * column;
     let y = height / 3 - 40 + 100 * row;
-<<<<<<< HEAD
-
-      let condition1 = j >= slider1.end1 && j < slider1.end2
-      let condition2 = dataHumidity[j] >= slider0.end1 && dataHumidity[j] < slider0.end2;
-      if (condition1 && condition2) {
-        drawRaindrop(x, y, dataHumidity[j]);
-      }
-
-=======
     let condition1 = j >= slider1.end1 && j < slider1.end2
     let condition2 = dataHumidity[j] >= slider0.end1 && dataHumidity[j] < slider0.end2;
     if (condition1 && condition2) {
       drawRaindrop(x, y, dataHumidity[j]);
     }
->>>>>>> 353d031221185c49a3cad3f8d567985bbde0a033
     // drawRaindrop(x, y, dataHumidity);
     textSize(20);
     strokeWeight(4);
@@ -144,21 +129,12 @@ function draw2() {
     text(days[j], x - 5, y + 80);
   }
   fill('white');
-<<<<<<< HEAD
-    textSize(100);
-    strokeWeight(5);
-    stroke('RebeccaPurple');
-    textAlign(CENTER);
-    textFont("Merienda");
-    text("Raining With You", 0, 30, width);
-=======
   textSize(100);
   strokeWeight(5);
   stroke('RebeccaPurple');
   textAlign(CENTER);
   textFont("Merienda");
   text("Raining With You", 0, 30, width);
->>>>>>> 353d031221185c49a3cad3f8d567985bbde0a033
 }
 function drawRaindrop(x, y, dataHumidity) {
   // set fill to a color based on the humidity
@@ -277,10 +253,7 @@ function drawArcs(data) {
   arc6();
   arc7();
   arc8();
-<<<<<<< HEAD
 
-=======
->>>>>>> 353d031221185c49a3cad3f8d567985bbde0a033
   // for (let i = 0; i < 8; i++) {
   //   gradientTemperatureArc(i);
   // }
