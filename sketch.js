@@ -252,6 +252,7 @@ function drawArcs(data) {
   arc6();
   arc7();
   arc8();
+
   // for (let i = 0; i < 8; i++) {
   //   gradientTemperatureArc(i);
   // }
