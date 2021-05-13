@@ -33,7 +33,7 @@ function setup() {
   slider0 = new Slider(250, 48, 66, 53, 62, 3);
   slider0.position(width / 15, 2 * height / 3);
   slider1 = new Slider(250, 0, 30, 6, 24, 1);
-  slider1.position(width / 15, height / 3);
+  slider1.position(width / 15, height / 2.5);
   for (let m = 0; m <= 29; m++) {
     // avg humidify for day #1
     for (let n = 0; n <= 71; n++) {
@@ -134,7 +134,7 @@ function draw2() {
   stroke('RebeccaPurple');
   textAlign(CENTER);
   textFont("Merienda");
-  text("Raining With You", 0, 30, width);
+  text("Raining With You", 0, 70, width);
 }
 function drawRaindrop(x, y, dataHumidity) {
   // set fill to a color based on the humidity
@@ -192,8 +192,7 @@ function setFillBasedOnHumidity(dataHumidity) {
 // figures out a color based on dataHumidity
 function colorForHumidity(dataHumidity) {
   let highColor = color(0, 0, 139);
-  //let lowColor = color(135, 206, 250);
-  let lowColor = color(135, 206, 250);
+  let lowColor = color(145, 216, 250);
   colorMode(RGB);
   scaledHumidity = map(dataHumidity, 50, 65, 0, 1);
   let aColor = lerpColor(lowColor, highColor, scaledHumidity);
@@ -376,15 +375,15 @@ function gradient2() {
   // translate(x, y);
   for (let i = width / 2 - 250; i < width / 2 + 250; i++) {
     let s = map(i, width / 2 - 250, width / 2 + 250, 0, 1)
-    let c = lerpColor(color("#83A7E1"), color("#004CBB"), s);
+    let c = lerpColor(color(145, 216, 250), color(0, 0, 139), s);
     stroke(c);
     // line(i, height-90, i, height-120);
-    rect(i - 10, height - 120, 50, 30, 10);
+    rect(i - 10, height - 120, 90, 30, 10);
     fill(c);
   }
   pop();
-  for (let i = 50; i <= 65; i += 5) {
-    text(i, width / 2 - 1850 + i * 32, height - 60);
+  for (let i = 48; i <= 66; i += 3) {
+    text(i, width / 2 - 1850 + i * 33, height - 60);
   }
 }
 function button() {

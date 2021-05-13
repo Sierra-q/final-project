@@ -126,13 +126,15 @@ class Slider {
 
         noStroke();
         fill(50, 50, 180);
-        let textString = "min: " + this.min;
-        textString += "\nmax: " + this.max;
-        textString += "\nstep: " + this.step;
-        textString += "\nend1: " + this.end1;
+        let
+            // textString = "days: ";
+            // textString = "min: " + this.min;
+            // textString += "\nmax: " + this.max;
+            // textString += "\nstep: " + this.step;
+            textString = "end1: " + this.end1;
         textString += "\nend2: " + this.end2;
         textSize(25);
-        text(textString, 50, 50);
+        text(textString, 100, 60);
         pop();
     }
 }
