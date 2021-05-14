@@ -131,8 +131,8 @@ class Slider {
             // textString = "min: " + this.min;
             // textString += "\nmax: " + this.max;
             // textString += "\nstep: " + this.step;
-            textString = "end1: " + this.end1;
-        textString += "\nend2: " + this.end2;
+            textString = "end1: " + floor(this.end1);
+        textString += "\nend2: " + floor(this.end2);
         textSize(25);
         text(textString, 100, 60);
         pop();

@@ -101,6 +101,14 @@ function draw2() {
   slider0.display();
   slider1.update();
   slider1.display();
+  textSize(20);
+  strokeWeight(0);
+  fill('RebeccaPurple');
+  text('Shanghai',85,50);
+  text('2020.4',85,80);
+  // textFont("Georgia");
+  text('drag to select days', 210,280);
+  text('drag to select humidity', 210, 490)
   //console.log(slider1.end1);
   // for (let m = 0; m <= 29; m++) {
   //   for (let n = 0; n <= 71; n++) {
@@ -229,6 +237,11 @@ function calculateArcStopColor(arcIndex) {
 //second page
 function draw3() {
   background(224, 218, 252);
+  textSize(20);
+  strokeWeight(0);
+  fill('RebeccaPurple');
+  text('Shanghai',85,50);
+  text('2020.4',85,80);
   drawArcs();
   // gradient1();
   gradient2();
